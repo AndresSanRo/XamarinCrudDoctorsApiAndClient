@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:XamarinDoctors.ViewModels"
+             xmlns:local="clr-namespace:XamarinDoctors"
+             BindingContext="{Binding Source={x:Static local:App.Locator}, Path=DoctorsViewModel}"
+             x:Name="DoctorList"
+             x:Class="XamarinDoctors.Views.Doctors">
+    <ContentPage.Content>
+        <StackLayout Margin="0, 30, 0, 0">
+            <Label FontSize="40" Text="Doctors" TextColor="Red" HorizontalOptions="CenterAndExpand" VerticalOptions="Start"/>
+            <Button Text="New doctor"
+                    Command="{Binding NewDoctor}"
+                    HorizontalOptions="FillAndExpand" 
+                    FontSize="30" 
+                    BackgroundColor="Red" 
+                    TextColor="Black"/>
+            <ListView ItemsSource="{Binding Doctors}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Detalles" CommandParameter="{Binding .}" 
+                                          Command="{Binding BindingContext.ShowDoctorDetail , Source={x:Reference DoctorList}}" />
+                                <MenuItem Text="Otros..."/>
+                            </ViewCell.ContextActions>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding LastName}" TextColor="Black" FontSize="30" HorizontalOptions="StartAndExpand" />
+                                <Image Source="edit.png" WidthRequest="40" HeightRequest="40" HorizontalOptions="EndAndExpand">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding .}" 
+                                                              Command="{Binding BindingContext.ModifyDoctor , Source={x:Reference DoctorList}}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image Source="doctoricon.png" WidthRequest="40" HeightRequest="40" HorizontalOptions="EndAndExpand">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding .}" 
+                                                              Command="{Binding BindingContext.ShowDoctorDetail , Source={x:Reference DoctorList}}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

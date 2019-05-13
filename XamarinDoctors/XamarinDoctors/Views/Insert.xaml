@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:XamarinDoctors.ViewModels"
+             x:Class="XamarinDoctors.Views.Insert">
+    <ContentPage.BindingContext>
+        <viewmodels:DoctorModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="New doctor"
+                   FontSize="30"                
+                   HorizontalOptions="CenterAndExpand" />
+            <Label Text="Lastname"/>
+            <Entry Text="{Binding Doctor.LastName}" HorizontalOptions="FillAndExpand"/>
+            <Label Text="Speciality"/>
+            <Entry Text="{Binding Doctor.Speciality}" HorizontalOptions="FillAndExpand"/>
+            <Label Text="Salary"/>
+            <Entry Text="{Binding Doctor.Salary}" HorizontalOptions="FillAndExpand"/>
+            <Label Text="Hospital"/>
+            <Entry Text="{Binding Doctor.Hospital}" HorizontalOptions="FillAndExpand"/>
+            <Button Text="Insert new doctor" HorizontalOptions="FillAndExpand" Command="{Binding InsertDoctor}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
