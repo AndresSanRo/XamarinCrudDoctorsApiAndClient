@@ -21,7 +21,7 @@ namespace XamarinDoctors
         {
             InitializeComponent();
 
-            MainPage = new Doctors();
+            MainPage = new NavigationPage(new PrincipalMaster());
         }
 
         protected override void OnStart()
